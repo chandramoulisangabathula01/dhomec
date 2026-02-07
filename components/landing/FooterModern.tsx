@@ -1,5 +1,13 @@
 import Link from "next/link";
 import { Facebook, Twitter, Linkedin, Instagram, Mail, MapPin, Phone } from "lucide-react";
+import { companyInfo, footerLinks, socialLinks } from "@/lib/data/footer";
+
+const iconMap: { [key: string]: React.ReactNode } = {
+  "Linkedin": <Linkedin className="h-5 w-5" />,
+  "Twitter": <Twitter className="h-5 w-5" />,
+  "Instagram": <Instagram className="h-5 w-5" />,
+  "Facebook": <Facebook className="h-5 w-5" />
+};
 
 export function FooterModern() {
   return (
@@ -18,10 +26,9 @@ export function FooterModern() {
               Premium gate automation and access control solutions. Authorized partner of KINGgates Italy.
             </p>
             <div className="flex gap-4">
-              <SocialIcon icon={<Linkedin className="h-5 w-5" />} href="#" />
-              <SocialIcon icon={<Twitter className="h-5 w-5" />} href="#" />
-              <SocialIcon icon={<Instagram className="h-5 w-5" />} href="#" />
-              <SocialIcon icon={<Facebook className="h-5 w-5" />} href="#" />
+              {socialLinks.map((social, idx) => (
+                <SocialIcon key={idx} icon={iconMap[social.iconName]} href={social.href} />
+              ))}
             </div>
           </div>
 
@@ -29,11 +36,9 @@ export function FooterModern() {
           <div>
             <h3 className="text-white font-bold mb-6 text-lg">Company</h3>
             <ul className="space-y-4">
-              <FooterLink href="/about">About Us</FooterLink>
-              <FooterLink href="/careers">Careers</FooterLink>
-              <FooterLink href="/contact">Contact</FooterLink>
-              <FooterLink href="/blog">Blog</FooterLink>
-              <FooterLink href="/privacy">Privacy Policy</FooterLink>
+              {footerLinks.company.map((link, idx) => (
+                <FooterLink key={idx} href={link.href}>{link.label}</FooterLink>
+              ))}
             </ul>
           </div>
 
@@ -41,11 +46,9 @@ export function FooterModern() {
           <div>
             <h3 className="text-white font-bold mb-6 text-lg">Products</h3>
             <ul className="space-y-4">
-              <FooterLink href="/products/sliding-gates">Sliding Gates</FooterLink>
-              <FooterLink href="/products/swing-gates">Swing Gates</FooterLink>
-              <FooterLink href="/products/barriers">Boom Barriers</FooterLink>
-              <FooterLink href="/products/shutters">Rolling Shutters</FooterLink>
-              <FooterLink href="/products/garage-doors">Garage Doors</FooterLink>
+              {footerLinks.products.map((link, idx) => (
+                <FooterLink key={idx} href={link.href}>{link.label}</FooterLink>
+              ))}
             </ul>
           </div>
 
@@ -56,25 +59,25 @@ export function FooterModern() {
               <li className="flex gap-4 items-start">
                 <MapPin className="h-6 w-6 text-red-600 shrink-0" />
                 <span>
-                  123 Innovation Drive,<br />
-                  Tech Park, Sector 5,<br />
-                  Hyderabad, India
+                  {companyInfo.address.line1}<br />
+                  {companyInfo.address.line2}<br />
+                  {companyInfo.address.line3}
                 </span>
               </li>
               <li className="flex gap-4 items-center">
                 <Phone className="h-5 w-5 text-red-600 shrink-0" />
-                <a href="tel:+91000000000" className="hover:text-white transition-colors">+91 98765 43210</a>
+                <a href={`tel:${companyInfo.contact.phone.replace(/[^0-9+]/g, '')}`} className="hover:text-white transition-colors">{companyInfo.contact.phone}</a>
               </li>
               <li className="flex gap-4 items-center">
                 <Mail className="h-5 w-5 text-red-600 shrink-0" />
-                <a href="mailto:info@dhomec.com" className="hover:text-white transition-colors">info@dhomec.com</a>
+                <a href={`mailto:${companyInfo.contact.email}`} className="hover:text-white transition-colors">{companyInfo.contact.email}</a>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
-          <p>© {new Date().getFullYear()} Dhomec Solutions. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {companyInfo.name}. All rights reserved.</p>
           <div className="flex gap-8">
             <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>

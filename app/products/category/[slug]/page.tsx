@@ -44,12 +44,12 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
            {products && products.length > 0 ? products.map((product) => (
               <div key={product.id} className="bg-card rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-md transition-shadow group flex flex-col h-full">
-                  <div className="h-56 bg-muted/20 relative overflow-hidden flex items-center justify-center p-4">
+                  <div className="h-56 bg-white relative overflow-hidden flex items-center justify-center p-4">
                       {product.image_url ? (
                           <img 
                             src={product.image_url} 
                             alt={product.name} 
-                            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 mix-blend-multiply dark:mix-blend-normal" 
+                            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" 
                           />
                       ) : (
                           <div className="text-muted-foreground text-sm">

@@ -6,12 +6,13 @@ import { Button } from '@/components/ui/button'
 
 // Placeholder data - in a real app this could be props or fetched
 const products = [
-    { title: "Automatic Boom Barrier", cat: "Traffic Control", slug: "automatic-boom-barrier", image: "https://images.unsplash.com/photo-1621929747188-6b4e64591a26?auto=format&fit=crop&q=80&w=600" },
-    { title: "Tripod Turnstile", cat: "Pedestrian Access", slug: "tripod-turnstile", image: "https://images.unsplash.com/photo-1620317377545-56905581335b?auto=format&fit=crop&q=80&w=600" },
-    { title: "Flap Barrier", cat: "Pedestrian Access", slug: "flap-barrier", image: "https://images.unsplash.com/photo-1563456078351-7f98d9cb6e84?auto=format&fit=crop&q=80&w=600" },
-    { title: "Sliding Gate Motor", cat: "Gate Automation", slug: "sliding-gate-motor", image: "https://images.unsplash.com/photo-1626885617639-656461a33716?auto=format&fit=crop&q=80&w=600" },
-    { title: "Swing Gate Motor", cat: "Gate Automation", slug: "swing-gate-motor", image: "https://images.unsplash.com/photo-1595846519129-f53eb4430164?auto=format&fit=crop&q=80&w=600" },
+    { title: "Automatic Boom Barrier", cat: "Traffic Control", slug: "automatic-boom-barrier", image: "/images/moterline-turbo-automatic-barrier-500x500.webp" },
+    { title: "Tripod Turnstile", cat: "Pedestrian Access", slug: "tripod-turnstile", image: "/images/motorline-ms01-traffic-control-traffic-lights-500x500.webp" },
+    { title: "Flap Barrier", cat: "Pedestrian Access", slug: "flap-barrier", image: "/images/moterline-sigma-x-electromechanical-barrier-500x500.webp" },
+    { title: "Sliding Gate Motor", cat: "Gate Automation", slug: "sliding-gate-motor", image: "/images/moterline-slide800a-brushless-motor-swing-gate-opener-500x500.webp" },
+    { title: "Swing Gate Motor", cat: "Gate Automation", slug: "swing-gate-motor", image: "/images/motorline-lince-automate-swing-gates-500x500.webp" },
 ]
+
 
 export function FeaturedProducts() {
     const scrollRef = useRef<HTMLDivElement>(null)

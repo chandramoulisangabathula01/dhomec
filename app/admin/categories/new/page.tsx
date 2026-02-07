@@ -13,7 +13,9 @@ export default function NewCategoryPage() {
   const [formData, setFormData] = useState({
     name: "",
     slug: "",
-    description: ""
+    description: "",
+    image_url: "",
+    is_featured: false
   });
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
@@ -92,27 +94,54 @@ export default function NewCategoryPage() {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Category Name</label>
-                <input 
-                    required
-                    type="text" 
-                    value={formData.name}
-                    onChange={handleNameChange}
-                    className="w-full px-3 py-2 border border-input rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                    placeholder="e.g. Boom Barriers"
-                />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">Category Name</label>
+                    <input 
+                        required
+                        type="text" 
+                        value={formData.name}
+                        onChange={handleNameChange}
+                        className="w-full px-3 py-2 border border-input rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                        placeholder="e.g. Boom Barriers"
+                    />
+                </div>
+
+                <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">Slug (URL)</label>
+                    <input 
+                        required
+                        type="text" 
+                        value={formData.slug}
+                        onChange={(e) => setFormData({...formData, slug: e.target.value})}
+                        className="w-full px-3 py-2 border border-input rounded-lg bg-muted text-muted-foreground font-mono text-sm"
+                    />
+                </div>
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Slug (URL)</label>
+                <label className="block text-sm font-medium text-foreground mb-2">Image URL</label>
                 <input 
-                    required
                     type="text" 
-                    value={formData.slug}
-                    onChange={(e) => setFormData({...formData, slug: e.target.value})}
-                    className="w-full px-3 py-2 border border-input rounded-lg bg-muted text-muted-foreground font-mono text-sm"
+                    value={formData.image_url}
+                    onChange={(e) => setFormData({...formData, image_url: e.target.value})}
+                    className="w-full px-3 py-2 border border-input rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="https://example.com/image.jpg or /images/..."
                 />
+                <p className="text-xs text-muted-foreground mt-1">URL of the category image.</p>
+            </div>
+
+            <div className="flex items-center gap-2">
+                <input 
+                    type="checkbox" 
+                    id="is_featured"
+                    checked={formData.is_featured}
+                    onChange={(e) => setFormData({...formData, is_featured: e.target.checked})}
+                    className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                />
+                <label htmlFor="is_featured" className="text-sm font-medium text-foreground select-none cursor-pointer">
+                    Featured on Homepage?
+                </label>
             </div>
 
             <div>

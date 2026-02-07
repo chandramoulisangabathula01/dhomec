@@ -1,6 +1,7 @@
 import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import { FooterModern } from "@/components/landing/FooterModern";
 import { ProductSidebar } from "@/components/store/ProductSidebar";
+import { MobileCategoryList } from "@/components/store/MobileCategoryList";
 
 export default function ProductsLayout({
   children,
@@ -8,18 +9,14 @@ export default function ProductsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-background flex flex-col transition-colors duration-300">
+    <div className="min-h-screen bg-white text-slate-900 flex flex-col transition-colors duration-300 font-sans">
       <Header />
       
-      <div className="bg-muted/30 border-b border-border py-4">
-         <div className="container-width">
-             <h1 className="text-xl font-bold text-foreground">Our Catalog</h1>
-             <p className="text-sm text-muted-foreground">Browse our industrial automation solutions</p>
-         </div>
-      </div>
-
       <main className="flex-1 py-8">
         <div className="container-width">
+          {/* Mobile Categories Scroll */}
+          <MobileCategoryList />
+
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Sidebar - Desktop */}
             <div className="hidden lg:block lg:col-span-1">
@@ -33,7 +30,7 @@ export default function ProductsLayout({
           </div>
         </div>
       </main>
-      <Footer />
+      <FooterModern />
     </div>
   );
 }

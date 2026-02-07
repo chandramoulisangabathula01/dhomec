@@ -21,9 +21,26 @@ export async function CategoryGrid() {
     .limit(5) // Limit to 5 for the specific layout
     .order('name');
     
+  // Manual image overrides to ensure all categories have visuals
+  const categoryImages: Record<string, string> = {
+    "Door Closer": "/images/moterline-kapvsp-anti-panic-telescopic-automatic-sliding-glass-door-500x500.webp",
+    "Infrared Detection Radar": "/images/motorline-ms01-traffic-control-traffic-lights-500x500.webp",
+    "Swing Shutter": "/images/moterline-rosso-evo-motor-sectional-door-500x500.webp",
+    "Microwave Sensor": "/images/motorline-traffic-control-traffic-lights-500x500.webp",
+    "Mild Steel Gate": "/images/motorline-jag-automate-swing-gates-500x500.webp",
+    "Fire Curtains": "/images/moterline-fix-roll-up-rapid-door-500x500.webp",
+    "Gate Automation": "/images/motorline-lince-automate-swing-gates-500x500.webp",
+    "Road Traffic Control": "/images/moterline-sigma-x-electromechanical-barrier-500x500.webp",
+    "Rapid Doors": "/images/moterline-fix-roll-up-rapid-door-500x500.webp",
+    "Glass Doors": "/images/moterline-kapvsp-anti-panic-telescopic-automatic-sliding-glass-door-500x500.webp",
+    "Sectional Doors": "/images/moterline-rosso-evo-motor-sectional-door-500x500.webp",
+    "Sensors & Accessories": "/images/motorline-ms01-traffic-control-traffic-lights-500x500.webp"
+  };
+
   // Transform for display
   const displayCategories = categories?.map((cat: any) => ({
       ...cat,
+      image_url: categoryImages[cat.name] || cat.image_url,
       count: cat.products?.[0]?.count ? `${cat.products[0].count} Models` : '0 Models'
   })) || [];
 

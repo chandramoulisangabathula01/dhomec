@@ -14,8 +14,25 @@ export default async function Products() {
     `)
     .order('name');
 
+  // Manual image overrides
+  const categoryImages: Record<string, string> = {
+    "Door Closer": "/images/moterline-kapvsp-anti-panic-telescopic-automatic-sliding-glass-door-500x500.webp",
+    "Infrared Detection Radar": "/images/motorline-ms01-traffic-control-traffic-lights-500x500.webp",
+    "Swing Shutter": "/images/moterline-rosso-evo-motor-sectional-door-500x500.webp",
+    "Microwave Sensor": "/images/motorline-traffic-control-traffic-lights-500x500.webp",
+    "Mild Steel Gate": "/images/motorline-jag-automate-swing-gates-500x500.webp",
+    "Fire Curtains": "/images/moterline-fix-roll-up-rapid-door-500x500.webp",
+    "Gate Automation": "/images/motorline-lince-automate-swing-gates-500x500.webp",
+    "Road Traffic Control": "/images/moterline-sigma-x-electromechanical-barrier-500x500.webp",
+    "Rapid Doors": "/images/moterline-fix-roll-up-rapid-door-500x500.webp",
+    "Glass Doors": "/images/moterline-kapvsp-anti-panic-telescopic-automatic-sliding-glass-door-500x500.webp",
+    "Sectional Doors": "/images/moterline-rosso-evo-motor-sectional-door-500x500.webp",
+    "Sensors & Accessories": "/images/motorline-ms01-traffic-control-traffic-lights-500x500.webp"
+  };
+
    const displayCategories = categories?.map((cat: any) => ({
       ...cat,
+      image_url: categoryImages[cat.name] || cat.image_url,
       count: cat.products?.[0]?.count || 0
   })) || [];
 
@@ -30,9 +47,13 @@ export default async function Products() {
            {displayCategories.length > 0 ? displayCategories.map((cat) => (
               <Link href={`/products/category/${cat.slug}`} key={cat.id} className="block group">
                  <div className="bg-card rounded-xl border border-border p-4 shadow-sm group-hover:shadow-md transition-all hover:border-primary h-full flex flex-col">
-                    <div className="bg-muted rounded-lg h-40 mb-4 relative overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-br from-muted/50 to-muted group-hover:scale-105 transition-transform duration-500"></div>
-                        <div className="absolute bottom-2 right-2 bg-background/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-foreground shadow-sm">
+                    <div className="bg-white rounded-lg h-40 mb-4 relative overflow-hidden">
+                        {cat.image_url ? (
+                             <img src={cat.image_url} alt={cat.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        ) : (
+                             <div className="absolute inset-0 bg-gradient-to-br from-muted/50 to-muted group-hover:scale-105 transition-transform duration-500"></div>
+                        )}
+                        <div className="absolute bottom-2 right-2 bg-background/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-foreground shadow-sm z-10">
                            {cat.count} Models
                         </div>
                     </div>

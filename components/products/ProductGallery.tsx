@@ -34,7 +34,7 @@ export default function ProductGallery({ images, productName, modelName }: Produ
     <div className="flex flex-col gap-4">
       {/* Main Image Area */}
       <div 
-        className="relative bg-background border border-border rounded-xl overflow-hidden aspect-square flex items-center justify-center cursor-crosshair group z-10"
+        className="relative bg-white border border-border rounded-xl overflow-hidden aspect-square flex items-center justify-center cursor-crosshair group z-10"
         onMouseEnter={() => setIsZoomed(true)}
         onMouseLeave={() => setIsZoomed(false)}
         onMouseMove={handleMouseMove}
@@ -47,7 +47,7 @@ export default function ProductGallery({ images, productName, modelName }: Produ
                 src={activeImage} 
                 alt={productName} 
                 className={cn(
-                    "max-h-full max-w-full object-contain mix-blend-multiply dark:mix-blend-normal transition-opacity duration-200",
+                    "max-h-full max-w-full object-contain transition-opacity duration-200",
                     isZoomed ? "opacity-0" : "opacity-100"
                 )} 
               />
@@ -83,7 +83,7 @@ export default function ProductGallery({ images, productName, modelName }: Produ
                 key={idx}
                 onMouseEnter={() => handleMouseEnter(img)}
                 className={cn(
-                    "flex-shrink-0 w-16 h-16 border rounded-lg overflow-hidden cursor-pointer transition-all p-1 bg-background",
+                    "flex-shrink-0 w-16 h-16 border rounded-lg overflow-hidden cursor-pointer transition-all p-1 bg-white",
                     activeImage === img ? "border-primary ring-2 ring-primary/20" : "border-border hover:border-primary/50"
                 )}
             >
